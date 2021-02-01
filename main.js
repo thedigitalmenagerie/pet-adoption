@@ -211,12 +211,12 @@ const pets = [
     }
   ];
 
-  const printToDom = (divId, textToPrint) => {
+const printToDom = (divId, textToPrint) => {
     const selectedDiv = document.querySelector(divId)
     selectedDiv.innerHTML = textToPrint;
   }
 
-  const createPetCards = (pets) => {
+const createPetCards = (pets) => {
     let domString = ''; 
         pets.forEach((item, i) => {
           domString += `<div class="card text-center card my-2" style="width: 18rem;" id=${i}>
@@ -232,12 +232,35 @@ const pets = [
         </div>`;
         })
       printToDom('#petCards', domString);
-      }
+  }
       
+const petTypeEvent = (e) => {
+  const buttonId = e.target.id;
 
-  
-    const init = () => {
-      createPetCards(pets); 
+
+  const selectedPets = [];
+  for (let i = 0; i < pets.length; i++) {
+    if (pets[i].type === buttonId) {
+        selectedPets.push(pets[i]);
+      }
     }
+    if(buttonId === 'All') { 
+      createPetCards(pets);
+    } else {
+      createPetCards(selectedPets); 
+    }
+  }
+  
+const buttonEvent = () => {
+  document.querySelector('#All').addEventListener('click', petTypeEvent);
+  document.querySelector('#Cat').addEventListener('click', petTypeEvent);
+  document.querySelector('#Dog').addEventListener('click', petTypeEvent);
+  document.querySelector('#Dino').addEventListener('click', petTypeEvent);
+} 
+  
+const init = () => {
+  buttonEvent();
+  createPetCards(pets); 
+}
     
-    init();
+init();
