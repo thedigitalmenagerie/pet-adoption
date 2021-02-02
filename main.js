@@ -219,18 +219,20 @@ const printToDom = (divId, textToPrint) => {
 const createPetCards = (pets) => {
     let domString = ''; 
         pets.forEach((item, i) => {
-          domString += `<div class="card text-center card my-2" style="width: 18rem;" id=${i}>
-          <div class="card-header fw-bold text-muted">${item.name}</div>
+          domString += `<div class="card text-center card my-4 mx-4" style="width:15rem;" id=${i}>
+          <div class="card-header fw-bolder text-muted">${item.name}</div>
           <div class="card-body">
             <div class="card-image-holder">
             <img src="${item.imageUrl}" class="img-thumbnail p-2" alt="Cute Kitten with hat">
             </div>
             <h5 class="card-title p-2">${item.color}</h5>
             <p class="card-text">${item.specialSkill}</p>
+            <button type="button" class="btn btn-danger" id="${i}">Delete</button>
           </div>
-          <div class="card-footer text-muted">${item.type}</div>
+          <div class="card-footer text-muted ${item.type} footer">${item.type}</div>
         </div>`;
         })
+         
       printToDom('#petCards', domString);
   }
       
@@ -242,20 +244,33 @@ const petTypeEvent = (e) => {
   for (let i = 0; i < pets.length; i++) {
     if (pets[i].type === buttonId) {
         selectedPets.push(pets[i]);
-      }
     }
+  }
     if(buttonId === 'All') { 
       createPetCards(pets);
     } else {
       createPetCards(selectedPets); 
-    }
   }
-  
+}
+
+const deletePet = (e) => {
+  const targetType = e.target.type;
+  const targetId = e.target.id;
+
+    if (targetType === 'button') { 
+      pets.splice(targetId, 1);
+    } 
+
+  createPetCards(pets); 
+
+  }
+
 const buttonEvent = () => {
   document.querySelector('#All').addEventListener('click', petTypeEvent);
   document.querySelector('#Cat').addEventListener('click', petTypeEvent);
   document.querySelector('#Dog').addEventListener('click', petTypeEvent);
   document.querySelector('#Dino').addEventListener('click', petTypeEvent);
+  document.querySelector('#petCards').addEventListener('click', deletePet)
 } 
   
 const init = () => {

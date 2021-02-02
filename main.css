@@ -1,3 +1,7 @@
+h1 {
+  margin-bottom: 50px;
+}
+
 body {
   background-color: aliceblue;
 }
@@ -8,12 +12,21 @@ img {
   background-position: center;
 }
 
-#button-container {
+ #button-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  margin-left: 300px;
+  margin-right: 300px; 
 }
 
-.btn {
-  display: flex;
-  justify-content: space-between;
+.Cat {
+  background-color: rgb(197, 226, 197);
+}
+
+.Dog {
+  background-color: rgb(238, 218, 104);
+}
+
+.Dino {
+  background-color: rgb(151, 240, 235);
 }
