@@ -1,3 +1,32 @@
+h1 {
+  margin-bottom: 50px;
+}
+
 body {
   background-color: aliceblue;
+}
+
+img {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+ #button-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 300px;
+  margin-right: 300px; 
+}
+
+.Cat {
+  background-color: rgb(197, 226, 197);
+}
+
+.Dog {
+  background-color: rgb(238, 218, 104);
+}
+
+.Dino {
+  background-color: rgb(151, 240, 235);
 }
